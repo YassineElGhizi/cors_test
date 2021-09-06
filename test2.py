@@ -3,7 +3,6 @@ from flask_cors import CORS , cross_origin
 from test import google as g
 from flask import request
 
-
 app = Flask(__name__)
 CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
@@ -16,7 +15,9 @@ def predict():
         res = dict()
         req = request.get_json()
         topic = req["topic"]
-        res["response"] = g(topic)
+        tmp = g(topic)
+        # tmp.append({'ip' : request.environ['REMOTE_ADDR']})
+        res["response"] = [tmp , {'ip' : request.environ['REMOTE_ADDR']}]
         print("res last state ")
         print(res)
         return res

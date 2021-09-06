@@ -1,10 +1,11 @@
 from selenium import webdriver
 from time import sleep
 from selenium.webdriver.common.keys import Keys
-from check_errs import chrome_options
+from selenium.webdriver.chrome.options import Options
 
 
 def google(topic):
+    chrome_options = Options()
     chrome_options.add_argument("--headless")
     search_input = '/html/body/div[1]/div[3]/form/div[1]/div[1]/div[1]/div/div[2]/input'
     final_res = []
@@ -35,8 +36,6 @@ def google(topic):
         # print(i.get_attribute('innerHTML'))
 
     driver.quit()
-    print("returning  : ")
-    print(final_res)
     return final_res
 
 # if __name__ == '__main__':
